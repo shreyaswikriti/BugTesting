@@ -52,6 +52,7 @@ jobs:
     - name: Build and Test on ${{ matrix.os }}
       if: matrix.os == 'ubuntu-22.04'
       run: |
+          lsb_release -a
           g++ -std=c++17 main.cc -o main -lopenlibm
           ldd main
           g++ -std=c++2a bug.cc -o bug -lopenlibm
