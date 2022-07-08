@@ -49,9 +49,9 @@ jobs:
       if: matrix.os == 'ubuntu-20.04'
       run: |
           g++ -std=c++17 main.cc -o main
-          g++ -std=c++17 Test.cc -lcppunit -o Test
+          
           chmod +x main
-          ./Test
+          ./main
 
       
     - name: Build and Test on ${{ matrix.os }}
