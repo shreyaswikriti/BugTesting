@@ -32,7 +32,7 @@ jobs:
       run: sudo apt install -y libcppunit-dev
     - name: Install cppunit
       if: matrix.os == 'macos-latest' 
-      run: sudo port install cppunit
+      run: brew install cppunit
 
    
       
