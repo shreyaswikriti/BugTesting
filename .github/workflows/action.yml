@@ -52,7 +52,7 @@ jobs:
       if: matrix.os == 'ubuntu-20.04'
       run: |
           g++ -std=c++17 main.cc -o main
-          g++ -std=c++20 bug.cc -o bug
+          g++ -std=c++2a bug.cc -o bug
           gcc --version
           chmod +x main
           chmod +x bug
