@@ -5,7 +5,7 @@ export LD_LIBRARY_PATH
 
 
 g++ -std=c++17 main.cc -o main
-g++ -std=c++17 v.cc -o v
+
 g++ -std=c++17 Test.cc -lcppunit -o Test
 
 
