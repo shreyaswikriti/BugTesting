@@ -61,9 +61,9 @@ jobs:
       run: |
             clang++ -stdlib=libc++ main.cc  -o x
             ./x
-            clang++ -stdlib=libc++ main.cc -lopenlibm -o main
+            clang++ -stdlib=libc++ main.cc -o main  -lopenlibm
             chmod +x main
-            lld main
+            
             ./main
 
             
