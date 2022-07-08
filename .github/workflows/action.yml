@@ -33,7 +33,7 @@ jobs:
    
       
     - name: Build and Test on ${{ matrix.os }}
-      if: matrix.os = 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: |
            g++ -std=c++17 main.cc -o main
            g++ -std=c++17 Test.cc -lcppunit -o Test
@@ -42,7 +42,7 @@ jobs:
 
       
     - name: Build and Test on ${{ matrix.os }}
-      if: matrix.os = 'ubuntu-20.04'
+      if: matrix.os == 'ubuntu-20.04'
       run: |
           g++ -std=c++17 main.cc -o main
           g++ -std=c++17 Test.cc -lcppunit -o Test
@@ -51,7 +51,7 @@ jobs:
 
       
     - name: Build and Test on ${{ matrix.os }}
-      if: matrix.os = 'macos-latest'
+      if: matrix.os == 'macos-latest'
       run: |
             clang++ -stdlib=libc++ main.cc -o main
             clang++ -stdlib=libc++ Test.cc -lcppunit -o Test
