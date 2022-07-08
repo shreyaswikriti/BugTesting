@@ -52,7 +52,6 @@ jobs:
       if: matrix.os == 'ubuntu-20.04'
       run: |
           g++ -std=c++17 main.cc -o main
-          
           chmod +x main
           ./main
 
@@ -60,7 +59,8 @@ jobs:
     - name: Build and Test on ${{ matrix.os }}
       if: matrix.os == 'macos-latest'
       run: |
-            
+            clang++ -stdlib=libc++ main.cc  -o x
+            ./x
             clang++ -stdlib=libc++ main.cc -lopenlibm -o main
             chmod +x main
             ./main
