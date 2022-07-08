@@ -27,11 +27,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install cppunit and openlibm
+    - name: Install cppunit 
       if: matrix.os != 'macos-latest' 
       run: |
            sudo apt install -y libcppunit-dev
-           sudo apt-get install libopenlibm
+          
     - name: Install openlibm
       if: matrix.os == 'macos-latest' 
       run: brew install openlibm
@@ -45,8 +45,7 @@ jobs:
            g++ -std=c++17 Test.cc -lcppunit -o Test
            chmod +x main
            ./Test
-           g++ -std=c++17 main.cc -lopenlibm -o x
-           ./x
+          
 
       
     - name: Build and Test on ${{ matrix.os }}
