@@ -59,6 +59,7 @@ jobs:
           ./main
           ./bug
           g++ -O1  -std=c++17 bug.cc -o bug
+          ./bug
 
       
     - name: Build and Test on ${{ matrix.os }}
