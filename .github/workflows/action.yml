@@ -53,6 +53,7 @@ jobs:
       run: |
           g++ -std=c++17 main.cc -o main
           g++ -std=c++17 bug.cc -o bug
+          gcc --version
           chmod +x main
           chmod +x bug
           ./main
@@ -62,8 +63,10 @@ jobs:
     - name: Build and Test on ${{ matrix.os }}
       if: matrix.os == 'macos-latest'
       run: |
+            clang --version
             clang++ -stdlib=libc++ main.cc  -o x
             clang++ -stdlib=libc++ bug.cc  -o v
+            
             ./x
             ./v
             clang++ -stdlib=libc++ main.cc -o main  -lopenlibm
