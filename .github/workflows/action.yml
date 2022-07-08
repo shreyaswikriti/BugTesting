@@ -76,6 +76,9 @@ jobs:
             ./bug
             ./main
             otool -L main
+            clang++ -stdlib=libc++ bug.cc  -lopenlibm -o bug 
+            ./bug
+            otool -L bug
 
             
     
