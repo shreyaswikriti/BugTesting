@@ -31,7 +31,7 @@ jobs:
       if: matrix.os != 'macos-latest' 
       run: |
            sudo apt install -y libcppunit-dev
-           sudo apt-get install openlibm
+           sudo apt-get install libopenlibm
     - name: Install openlibm
       if: matrix.os == 'macos-latest' 
       run: brew install openlibm
