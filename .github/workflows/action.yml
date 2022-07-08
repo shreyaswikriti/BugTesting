@@ -1,0 +1,62 @@
+name: BUG Test
+    
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  test:
+    name: Test on  ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, ubuntu-20.04]
+        include:
+          - os: ubuntu-20.04
+            c-compiler: "gcc"
+            cxx-compiler: "g++"
+          - os: ubuntu-latest
+            c-compiler: "gcc"
+            cxx-compiler: "g++"
+          - os: macos-latest
+            c-compiler: "clang"
+            cxx-compiler: "clang++"
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install cppunit
+      run: sudo apt install -y libcppunit-dev
+
+   
+      
+    - name: Build and Test on ${{ matrix.os }}
+      if: matrix.os = 'ubuntu-latest'
+      run: |
+           g++ -std=c++17 main.cc -o main
+           g++ -std=c++17 Test.cc -lcppunit -o Test
+           chmod +x main
+           ./Test
+
+      
+    - name: Build and Test on ${{ matrix.os }}
+      if: matrix.os = 'ubuntu-20.04'
+      run: |
+          g++ -std=c++17 main.cc -o main
+          g++ -std=c++17 Test.cc -lcppunit -o Test
+          chmod +x main
+          ./Test
+
+      
+    - name: Build and Test on ${{ matrix.os }}
+      if: matrix.os = 'macos-latest'
+      run: |
+            clang++ -stdlib=libc++ main.cc -o main
+            clang++ -stdlib=libc++ Test.cc -lcppunit -o Test
+            chmod +x main
+            ./Test
+
+            
+    
