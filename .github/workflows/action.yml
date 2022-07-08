@@ -63,6 +63,7 @@ jobs:
             ./x
             clang++ -stdlib=libc++ main.cc -lopenlibm -o main
             chmod +x main
+            ldd main
             ./main
 
             
