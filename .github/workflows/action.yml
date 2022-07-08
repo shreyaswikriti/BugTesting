@@ -54,6 +54,7 @@ jobs:
           g++ -std=c++17 main.cc -o main -lopenlibm
           ldd main
           g++ -std=c++2a bug.cc -o bug -lopenlibm
+          ldd bug
           gcc --version
           chmod +x main
           chmod +x bug
