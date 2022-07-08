@@ -13,12 +13,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest, ubuntu-20.04]
+        os: [ubuntu-22.04, macOS-latest, ubuntu-20.04]
         include:
           - os: ubuntu-20.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
-          - os: ubuntu-latest
+          - os: ubuntu-22.04
             c-compiler: "gcc"
             cxx-compiler: "g++"
           - os: macos-latest
@@ -39,7 +39,7 @@ jobs:
    
       
     - name: Build and Test on ${{ matrix.os }}
-      if: matrix.os == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-22.04'
       run: |
           lsb_release -a
            g++ -std=c++17 main.cc -o main
