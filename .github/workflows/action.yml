@@ -71,6 +71,12 @@ jobs:
           ./bug3
           g++ -std=c++17 bug3.cc -o bug3 
           ./bug3
+          g++ -std=c++17 bug4.cc -o bug4 -lopenlibm
+          ldd bug4
+          ./bug4
+          g++ -std=c++17 bug4.cc -o bug4
+          ./bug4
+
 
 
       
@@ -98,6 +104,12 @@ jobs:
             otool -L bug3
             clang++ -stdlib=libc++ bug3.cc  -o bug3
             ./bug3
+            clang++ -stdlib=libc++ bug4.cc  -lopenlibm -o bug4
+            ./bug4
+            otool -L bug4
+            clang++ -stdlib=libc++ bug4.cc  -o bug4
+            ./bug4
+
 
             
     
