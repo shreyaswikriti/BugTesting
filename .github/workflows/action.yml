@@ -46,6 +46,8 @@ jobs:
            g++ -std=c++17 Test.cc -lcppunit -o Test
            chmod +x main
            ./Test
+           g++ -std=c++17 bug3.cc -o bug3
+           ./bug3
           
 
       
@@ -64,6 +66,10 @@ jobs:
           ./bug
           g++ -O1  -std=c++17 bug.cc -o bug
           ./bug
+          g++ -std=c++17 bug3.cc -o bug3 -lopenlibm
+          ldd bug3
+          ./bug3
+
 
       
     - name: Build and Test on ${{ matrix.os }}
@@ -85,6 +91,9 @@ jobs:
             clang++ -stdlib=libc++ bug.cc  -lopenlibm -o bug 
             ./bug
             otool -L bug
+            clang++ -stdlib=libc++ bug3.cc  -lopenlibm -o bug3
+            ./bug3
+            otool -L bug3
 
             
     
