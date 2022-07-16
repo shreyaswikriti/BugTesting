@@ -48,9 +48,33 @@ jobs:
            g++ -std=c++17 Test.cc -lcppunit -o Test
            chmod +x bug#55538
            ./Test
+
+           g++ -std=c++17 bug#55538.cc -o bug#55538 -lopenlibm
+          ldd bug#55538
+          chmod +x bug#55538
+          ./bug#55538
+
+          g++ -std=c++2a bug#62212.cc -o bug#62212 -lopenlibm
+          ldd bug#62212
+          chmod +x bug#62212
+          ./bug#62212
+
+          g++ -O1  -std=c++17 bug#62212.cc -o bug#62212
+          ./bug#62212
+
+          g++ -std=c++17 bug#62332_.cc -o bug#62332_ -lopenlibm
+          ldd bug#62332_
+          ./bug#62332_
+          g++ -std=c++17 bug#62332_.cc -o bug#62332_ 
+          ./bug#62332_
+
+          g++ -std=c++17 bug#62332.cc -o bug#62332 -lopenlibm
+          ldd bug#62332
+          ./bug#62332
+          g++ -std=c++17 bug#62332.cc -o bug#62332
+          ./bug#62332
   
-           g++ -std=c++17 bug#62332_.cc -o bug#62332_
-           ./bug#62332_
+           
           
 
       
