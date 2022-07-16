@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
     - main
+
 jobs:
   test:
     name: Test on  ${{ matrix.os }}
@@ -42,40 +43,48 @@ jobs:
       if: matrix.os == 'ubuntu-20.04'
       run: |
           lsb_release -a
-           g++ -std=c++17 main.cc -o main
+
+           g++ -std=c++17 bug#55538.cc -o bug#55538
            g++ -std=c++17 Test.cc -lcppunit -o Test
-           chmod +x main
+           chmod +x bug#55538
            ./Test
-           g++ -std=c++17 bug3.cc -o bug3
-           ./bug3
+  
+           g++ -std=c++17 bug#62332_.cc -o bug#62332_
+           ./bug#62332_
           
 
       
     - name: Build and Test on ${{ matrix.os }}
       if: matrix.os == 'ubuntu-22.04'
       run: |
+
           lsb_release -a
-          g++ -std=c++17 main.cc -o main -lopenlibm
-          ldd main
-          g++ -std=c++2a bug.cc -o bug -lopenlibm
-          ldd bug
           gcc --version
-          chmod +x main
-          chmod +x bug
-          ./main
-          ./bug
-          g++ -O1  -std=c++17 bug.cc -o bug
-          ./bug
-          g++ -std=c++17 bug3.cc -o bug3 -lopenlibm
-          ldd bug3
-          ./bug3
-          g++ -std=c++17 bug3.cc -o bug3 
-          ./bug3
-          g++ -std=c++17 bug4.cc -o bug4 -lopenlibm
-          ldd bug4
-          ./bug4
-          g++ -std=c++17 bug4.cc -o bug4
-          ./bug4
+
+          g++ -std=c++17 bug#55538.cc -o bug#55538 -lopenlibm
+          ldd bug#55538
+          chmod +x bug#55538
+          ./bug#55538
+
+          g++ -std=c++2a bug#62212.cc -o bug#62212 -lopenlibm
+          ldd bug#62212
+          chmod +x bug#62212
+          ./bug#62212
+
+          g++ -O1  -std=c++17 bug#62212.cc -o bug#62212
+          ./bug#62212
+
+          g++ -std=c++17 bug#62332_.cc -o bug#62332_ -lopenlibm
+          ldd bug#62332_
+          ./bug#62332_
+          g++ -std=c++17 bug#62332_.cc -o bug#62332_ 
+          ./bug#62332_
+
+          g++ -std=c++17 bug#62332.cc -o bug#62332 -lopenlibm
+          ldd bug#62332
+          ./bug#62332
+          g++ -std=c++17 bug#62332.cc -o bug#62332
+          ./bug#62332
 
 
 
@@ -84,31 +93,28 @@ jobs:
       if: matrix.os == 'macos-latest'
       run: |
             clang --version
-            clang++ -stdlib=libc++ main.cc  -o x
-            clang++ -stdlib=libc++ bug.cc  -o v
-            
+            clang++ -stdlib=libc++ bug#55538.cc  -o x
+            clang++ -stdlib=libc++ bug#62212.cc  -o v
             ./x
             ./v
-            clang++ -stdlib=libc++ main.cc -o main  -lopenlibm
-            clang++ -stdlib=libc++ bug.cc -o bug  -lopenlibm
-            chmod +x main
-            chmod +x bug
-            ./bug
-            ./main
-            otool -L main
-            clang++ -stdlib=libc++ bug.cc  -lopenlibm -o bug 
-            ./bug
-            otool -L bug
-            clang++ -stdlib=libc++ bug3.cc  -lopenlibm -o bug3
-            ./bug3
-            otool -L bug3
-            clang++ -stdlib=libc++ bug3.cc  -o bug3
-            ./bug3
-            clang++ -stdlib=libc++ bug4.cc  -lopenlibm -o bug4
-            ./bug4
-            otool -L bug4
-            clang++ -stdlib=libc++ bug4.cc  -o bug4
-            ./bug4
+            clang++ -stdlib=libc++ bug#55538.cc -o bug#55538  -lopenlibm
+            otool -L bug#55538
+            ./bug#55538
+            clang++ -stdlib=libc++ bug#62212.cc -o bug#62212  -lopenlibm
+            otool -L bug#62212
+            ./bug#62212
+            
+            clang++ -stdlib=libc++ bug#62332_.cc  -lopenlibm -o bug#62332_
+            otool -L bug#62332_
+            ./bug#62332_
+            clang++ -stdlib=libc++ bug#62332_.cc  -o bug#62332_
+            ./bug#62332_
+
+            clang++ -stdlib=libc++ bug#62332.cc  -lopenlibm -o bug#62332
+            otool -L bug#62332
+            ./bug#62332
+            clang++ -stdlib=libc++ bug#62332.cc  -o bug#62332
+            ./bug#62332
 
 
             
