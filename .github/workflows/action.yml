@@ -82,15 +82,19 @@ jobs:
 
           lsb_release -a
           gcc --version
+          g++ -std=c++17 bug#55538.cc -o bug#55538 
+          ldd bug#55538
+          ./bug#55538
 
           g++ -std=c++17 bug#55538.cc -o bug#55538 -lopenlibm
           ldd bug#55538
-          chmod +x bug#55538
           ./bug#55538
 
+          g++ -std=c++2a bug#62212.cc -o bug#62212 
+          ldd bug#62212
+          ./bug#62212
           g++ -std=c++2a bug#62212.cc -o bug#62212 -lopenlibm
           ldd bug#62212
-          chmod +x bug#62212
           ./bug#62212
 
           g++ -O1  -std=c++17 bug#62212.cc -o bug#62212
@@ -106,6 +110,7 @@ jobs:
           ldd bug#62332
           ./bug#62332
           g++ -std=c++17 bug#62332.cc -o bug#62332
+          ldd bug#62332
           ./bug#62332
 
 
@@ -116,12 +121,17 @@ jobs:
       run: |
             clang --version
             clang++ -stdlib=libc++ bug#55538.cc  -o x
-            clang++ -stdlib=libc++ bug#62212.cc  -o v
+            otool -L x
             ./x
-            ./v
+
             clang++ -stdlib=libc++ bug#55538.cc -o bug#55538  -lopenlibm
             otool -L bug#55538
             ./bug#55538
+
+            clang++ -stdlib=libc++ bug#62212.cc  -o v
+            otool -L v
+            ./v
+            
             clang++ -stdlib=libc++ bug#62212.cc -o bug#62212  -lopenlibm
             otool -L bug#62212
             ./bug#62212
@@ -136,6 +146,7 @@ jobs:
             otool -L bug#62332
             ./bug#62332
             clang++ -stdlib=libc++ bug#62332.cc  -o bug#62332
+            otool -L bug#62332
             ./bug#62332
 
 
