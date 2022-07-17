@@ -88,6 +88,7 @@ jobs:
 
           g++ -std=c++17 bug#55538.cc -o bug#55538 -lopenlibm
           ldd bug#55538
+          ldd -u bug#55538
           ./bug#55538
 
           g++ -std=c++2a bug#62212.cc -o bug#62212 
