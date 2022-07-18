@@ -146,7 +146,7 @@ jobs:
             clang++ -stdlib=libc++ bug#62332.cc  -lopenlibm -o bug#62332
             otool -L bug#62332
             ./bug#62332
-            clang++ -stdlib=libc++ bug#62332.cc  -o bug#62332
+            clang++ -stdlib=libstdc++ bug#62332.cc  -o bug#62332
             otool -L bug#62332
             ./bug#62332
 
